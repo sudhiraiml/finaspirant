@@ -1,66 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Home - FinAspirant</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Custom styles */
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-image: linear-gradient(45deg, #f3f4f6 25%, transparent 25%), 
+                        linear-gradient(-45deg, #f3f4f6 25%, transparent 25%),
+                        linear-gradient(45deg, transparent 75%, #f3f4f6 75%),
+                        linear-gradient(-45deg, transparent 75%, #f3f4f6 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 0, 10px -10px, 0px 10px;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .animate-fadeInUp {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+    .hover-scale {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hover-scale:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+    .pulse {
+      animation: pulse 2s infinite ease-in-out;
+    }
+    .gradient-overlay {
+      background: linear-gradient(to right, rgba(30, 64, 175, 0.95), rgba(59, 130, 246, 0.75));
+    }
+    .parallax {
+      background-attachment: fixed;
+      background-position: center;
+      background-size: cover;
+    }
+    .card-gradient {
+      background: linear-gradient(135deg, #ffffff, #f9fafb);
+    }
+    .accordion-content {
+      transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    }
+    #carousel {
+      transition: transform 0.5s ease;
+    }
+  </style>
 </head>
-<body class="bg-white text-black font-sans">
+<body class="bg-gray-100 text-gray-900">
 
   <!-- Navbar -->
-  <nav class="bg-blue-700 text-white px-6 py-4 shadow-md">
-    <ul class="flex flex-wrap gap-6 text-sm font-bold">
-      <li><a href="index.html" class="underline text-yellow-300">Home</a></li>
-      <li><a href="about.html" class="hover:underline hover:text-yellow-300 transition">About Us</a></li>
-      <li><a href="learning.html" class="hover:underline hover:text-yellow-300 transition">Learning Academy</a></li>
-      <li><a href="stratiq.html" class="hover:underline hover:text-yellow-300 transition">StratIQ™</a></li>
-      <li><a href="backtest.html" class="hover:underline hover:text-yellow-300 transition">BackTestLab™</a></li>
-      <li><a href="tools.html" class="hover:underline hover:text-yellow-300 transition">Tools & Resources</a></li>
-      <li><a href="blog.html" class="hover:underline hover:text-yellow-300 transition">Blog & Insides</a></li>
-      <li><a href="ipo.html" class="hover:underline hover:text-yellow-300 transition">IPO & Insurance</a></li>
-      <li><a href="career.html" class="hover:underline hover:text-yellow-300 transition">Career & Disclosure</a></li>
-      <li><a href="contact.html" class="hover:underline hover:text-yellow-300 transition">Contact Us</a></li>
-    </ul>
+  <nav class="bg-blue-800 text-white px-6 py-4 shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="text-2xl font-bold">FinAspirant</div>
+      <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+      <ul id="menu" class="hidden md:flex flex-wrap gap-6 text-sm font-semibold">
+        <li><a href="index.html" class="text-yellow-300 border-b-2 border-yellow-300">Home</a></li>
+        <li><a href="about.html" class="hover:text-yellow-300 transition duration-300">About Us</a></li>
+        <li><a href="learning.html" class="hover:text-yellow-300 transition duration-300">Learning Academy</a></li>
+        <li><a href="stratiq.html" class="hover:text-yellow-300 transition duration-300">StratIQ™</a></li>
+        <li><a href="backtest.html" class="hover:text-yellow-300 transition duration-300">BackTestLab™</a></li>
+        <li><a href="tools.html" class="hover:text-yellow-300 transition duration-300">Tools & Resources</a></li>
+        <li><a href="blog.html" class="hover:text-yellow-300 transition duration-300">Blog & Insights</a></li>
+        <li><a href="ipo.html" class="hover:text-yellow-300 transition duration-300">IPO & Insurance</a></li>
+        <li><a href="career.html" class="hover:text-yellow-300 transition duration-300">Career & Disclosure</a></li>
+        <li><a href="contact.html" class="hover:text-yellow-300 transition duration-300">Contact Us</a></li>
+      </ul>
+    </div>
   </nav>
 
   <!-- Hero Section -->
-  <section class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 items-center gap-10">
-    <div>
-      <h1 class="text-5xl font-extrabold text-blue-800 mb-6">Welcome to FinAspirant</h1>
-      <p class="text-gray-700 text-lg mb-6">Empowering retail investors and traders through analytics, education, and tools. Your journey to financial literacy and freedom starts here.</p>
-      <a href="learning.html" class="bg-black text-white px-6 py-3 rounded-full font-semibold hover:bg-gray-800 transition">Start Learning</a>
-    </div>
-    <div class="hidden md:block">
-      <img src="https://source.unsplash.com/600x400/?finance,stock" alt="Finance Illustration" class="rounded-lg shadow-lg" />
+  <section class="relative bg-cover h-[500px] parallax" style="background-image: url('https://images.unsplash.com/photo-1611224923851-80d4d9726b44?q=80&w=1920');">
+    <div class="absolute inset-0 gradient-overlay flex items-center justify-center">
+      <div class="text-center text-white animate-fadeInUp">
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-4 tracking-tight">Welcome to FinAspirant</h1>
+        <p class="text-lg md:text-xl max-w-3xl mx-auto">Empowering retail investors and traders through analytics, education, and tools. Your journey to financial literacy starts here.</p>
+        <a href="learning.html" class="mt-6 inline-block bg-yellow-300 text-blue-800 px-8 py-3 rounded-full font-semibold hover:bg-yellow-400 transition">Start Learning</a>
+      </div>
     </div>
   </section>
 
   <!-- Feature Section -->
-  <section class="bg-gray-50 py-16 px-6">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">Explore Our Offerings</h2>
-      <div class="grid md:grid-cols-3 gap-8 text-center">
-        <div class="p-6 bg-white shadow rounded">
-          <h3 class="text-xl font-semibold mb-2">📘 Learning Academy</h3>
-          <p class="text-gray-600">Courses, webinars, and tutorials for market education.</p>
+  <section id="features" class="max-w-7xl mx-auto px-6 py-16">
+    <h2 class="text-3xl font-extrabold text-blue-800 mb-10 text-center flex items-center gap-2">
+      ✨ <span>Explore Our Offerings</span>
+    </h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="card-gradient p-6 rounded-xl shadow-lg hover-scale animate-fadeInUp">
+        <div class="flex items-center gap-3 mb-3">
+          <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+          <h3 class="text-xl font-semibold text-orange-700">Learning Academy</h3>
         </div>
-        <div class="p-6 bg-white shadow rounded">
-          <h3 class="text-xl font-semibold mb-2">📊 StratIQ™ Tools</h3>
-          <p class="text-gray-600">Data-driven tools for option strategies & backtesting.</p>
+        <p class="text-sm text-gray-600 mb-4">Courses, webinars, and tutorials for market education.</p>
+        <a href="learning.html" class="text-blue-600 font-semibold hover:text-blue-800">Discover Courses</a>
+      </div>
+      <div class="card-gradient p-6 rounded-xl shadow-lg hover-scale animate-fadeInUp" style="animation-delay: 0.1s;">
+        <div class="flex items-center gap-3 mb-3">
+          <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+          <h3 class="text-xl font-semibold text-orange-700">StratIQ™ Tools</h3>
         </div>
-        <div class="p-6 bg-white shadow rounded">
-          <h3 class="text-xl font-semibold mb-2">📰 Blog & Insights</h3>
-          <p class="text-gray-600">Stay updated with market news, trends, and tips.</p>
+        <p class="text-sm text-gray-600 mb-4">Data-driven tools for option strategies & backtesting.</p>
+        <a href="stratiq.html" class="text-blue-600 font-semibold hover:text-blue-800">Explore Tools</a>
+      </div>
+      <div class="card-gradient p-6 rounded-xl shadow-lg hover-scale animate-fadeInUp" style="animation-delay: 0.2s;">
+        <div class="flex items-center gap-3 mb-3">
+          <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
+          <h3 class="text-xl font-semibold text-orange-700">Blog & Insights</h3>
+        </div>
+        <p class="text-sm text-gray-600 mb-4">Stay updated with market news, trends, and tips.</p>
+        <a href="blog.html" class="text-blue-600 font-semibold hover:text-blue-800">Read Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="max-w-7xl mx-auto px-6 py-16 bg-blue-50">
+    <h2 class="text-3xl font-extrabold text-blue-800 mb-10 text-center flex items-center gap-2">
+      📈 <span>Our Impact</span>
+    </h2>
+    <div class="grid md:grid-cols-3 gap-8 text-center">
+      <div class="p-6 bg-white rounded-xl shadow-lg hover-scale animate-fadeInUp">
+        <h3 class="text-4xl font-bold text-orange-600">50K+</h3>
+        <p class="text-sm text-gray-600">Active Users</p>
+      </div>
+      <div class="p-6 bg-white rounded-xl shadow-lg hover-scale animate-fadeInUp" style="animation-delay: 0.1s;">
+        <h3 class="text-4xl font-bold text-orange-600">100+</h3>
+        <p class="text-sm text-gray-600">Courses & Tools</p>
+      </div>
+      <div class="p-6 bg-white rounded-xl shadow-lg hover-scale animate-fadeInUp" style="animation-delay: 0.2s;">
+        <h3 class="text-4xl font-bold text-orange-600">1M+</h3>
+        <p class="text-sm text-gray-600">Community Reach</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial Carousel -->
+  <section class="max-w-7xl mx-auto px-6 py-16">
+    <h3 class="text-3xl font-extrabold text-blue-800 mb-6 text-center">What Our Users Say</h3>
+    <div id="carousel" class="relative overflow-hidden">
+      <div class="flex transition-transform duration-500" id="carousel-items">
+        <div class="min-w-full p-6 bg-white rounded-xl shadow-lg text-center">
+          <p class="text-gray-600 italic mb-4">"FinAspirant’s tools and courses transformed my investing journey!"</p>
+          <p class="font-semibold text-blue-700">— Ananya Sharma, Investor</p>
+        </div>
+        <div class="min-w-full p-6 bg-white rounded-xl shadow-lg text-center">
+          <p class="text-gray-600 italic mb-4">"The Learning Academy gave me the confidence to trade smarter."</p>
+          <p class="font-semibold text-blue-700">— Rohit Patel, Trader</p>
+        </div>
+        <div class="min-w-full p-6 bg-white rounded-xl shadow-lg text-center">
+          <p class="text-gray-600 italic mb-4">"StratIQ™ tools are a game-changer for my portfolio."</p>
+          <p class="font-semibold text-blue-700">— Priya Menon, Analyst</p>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center gap-2 mt-4">
+      <button id="prev" class="p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700">←</button>
+      <button id="next" class="p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700">→</button>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="max-w-7xl mx-auto px-6 py-16">
+    <h2 class="text-3xl font-extrabold text-blue-800 mb-6 flex items-center gap-2">
+      ❓ <span>Frequently Asked Questions</span>
+    </h2>
+    <div class="space-y-4">
+      <div class="bg-white p-6 rounded-xl shadow-lg hover-scale animate-fadeInUp">
+        <button class="w-full text-left font-semibold text-blue-700 flex justify-between items-center" onclick="toggleAccordion(this)">
+          What is FinAspirant?
+          <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="accordion-content max-h-0 opacity-0 overflow-hidden">
+          <p class="text-sm text-gray-600 mt-2">FinAspirant is a platform empowering retail investors with analytics, education, and tools for financial literacy.</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg hover-scale animate-fadeInUp" style="animation-delay: 0.1s;">
+        <button class="w-full text-left font-semibold text-blue-700 flex justify-between items-center" onclick="toggleAccordion(this)">
+          Is FinAspirant suitable for beginners?
+          <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="accordion-content max-h-0 opacity-0 overflow-hidden">
+          <p class="text-sm text-gray-600 mt-2">Yes, our platform is designed for all levels, with beginner-friendly courses and intuitive tools.</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg hover-scale animate-fadeInUp" style="animation-delay: 0.2s;">
+        <button class="w-full text-left font-semibold text-blue-700 flex justify-between items-center" onclick="toggleAccordion(this)">
+          How can I get started?
+          <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="accordion-content max-h-0 opacity-0 overflow-hidden">
+          <p class="text-sm text-gray-600 mt-2">Explore our Learning Academy, try StratIQ™ tools, or contact us to begin your financial journey.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Sticky CTA -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <a href="learning.html" class="inline-block bg-orange-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-orange-700 transition shadow-lg hover-scale pulse">Start Learning</a>
+  </div>
+
   <!-- Footer -->
-  <footer class="bg-blue-700 text-white text-center py-4 text-sm">
-    © 2025 FinAspirant. All rights reserved.
+  <footer class="bg-blue-800 text-white text-center py-8">
+    <div class="max-w-7xl mx-auto">
+      <p class="mb-4 text-sm">© 2025 FinAspirant. All rights reserved.</p>
+      <div class="flex justify-center gap-6 text-sm mb-4">
+        <a href="#" class="hover:text-yellow-300 transition">Privacy Policy</a>
+        <a href="#" class="hover:text-yellow-300 transition">Terms of Service</a>
+        <a href="#" class="hover:text-yellow-300 transition">FAQ</a>
+      </div>
+      <div class="flex justify-center gap-4">
+        <a href="#" class="hover:text-yellow-300"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg></a>
+        <a href="#" class="hover:text-yellow-300"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg></a>
+        <a href="#" class="hover:text-yellow-300"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path><circle cx="4" cy="4" r="2"></circle></svg></a>
+      </div>
+    </div>
   </footer>
 
+  <script>
+    // Hamburger menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    menuToggle.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
+      menu.classList.toggle('flex-col');
+      menu.classList.toggle('absolute');
+      menu.classList.toggle('top-16');
+      menu.classList.toggle('left-0');
+      menu.classList.toggle('right-0');
+      menu.classList.toggle('bg-blue-800');
+      menu.classList.toggle('p-4');
+    });
+
+    // Carousel functionality
+    const carousel = document.getElementById('carousel-items');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    let currentIndex = 0;
+    const items = carousel.children.length;
+
+    next.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % items;
+      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    });
+
+    prev.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + items) % items;
+      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    });
+
+    // Auto-slide every 5 seconds
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % items;
+      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }, 5000);
+
+    // Accordion functionality
+    function toggleAccordion(button) {
+      const content = button.nextElementSibling;
+      const isOpen = content.style.maxHeight;
+      document.querySelectorAll('.accordion-content').forEach(item => {
+        item.style.maxHeight = null;
+        item.style.opacity = 0;
+        item.previousElementSibling.querySelector('svg').classList.remove('rotate-180');
+      });
+      if (!isOpen) {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        content.style.opacity = 1;
+        button.querySelector('svg').classList.add('rotate-180');
+      }
+    }
+  </script>
 </body>
 </html>

@@ -3,75 +3,294 @@
 <head>
   <meta charset="UTF-8">
   <title>Career & Disclosure - FinAspirant</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Custom styles */
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-image: linear-gradient(45deg, #f3f4f6 25%, transparent 25%), 
+                        linear-gradient(-45deg, #f3f4f6 25%, transparent 25%),
+                        linear-gradient(45deg, transparent 75%, #f3f4f6 75%),
+                        linear-gradient(-45deg, transparent 75%, #f3f4f6 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 0, 10px -10px, 0px 10px;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .animate-fadeInUp {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+    .hover-scale {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hover-scale:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+    .pulse {
+      animation: pulse 2s infinite ease-in-out;
+    }
+    .gradient-overlay {
+      background: linear-gradient(to right, rgba(30, 64, 175, 0.95), rgba(59, 130, 246, 0.75));
+    }
+    .parallax {
+      background-attachment: fixed;
+      background-position: center;
+      background-size: cover;
+    }
+    .accordion-content {
+      transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    }
+    #carousel {
+      transition: transform 0.5s ease;
+    }
+  </style>
 </head>
-<body class="bg-white text-black font-sans">
+<body class="bg-gray-100 text-gray-900">
 
   <!-- Navbar -->
-  <nav class="bg-blue-700 text-white px-6 py-4 shadow-md">
-    <ul class="flex flex-wrap gap-6 text-sm font-bold">
-      <li><a href="index.html" class="hover:underline hover:text-yellow-300 transition">Home</a></li>
-      <li><a href="about.html" class="hover:underline hover:text-yellow-300 transition">About Us</a></li>
-      <li><a href="learning.html" class="hover:underline hover:text-yellow-300 transition">Learning Academy</a></li>
-      <li><a href="stratiq.html" class="hover:underline hover:text-yellow-300 transition">StratIQ™</a></li>
-      <li><a href="backtest.html" class="hover:underline hover:text-yellow-300 transition">BackTestLab™</a></li>
-      <li><a href="tools.html" class="hover:underline hover:text-yellow-300 transition">Tools & Resources</a></li>
-      <li><a href="blog.html" class="hover:underline hover:text-yellow-300 transition">Blog & Insides</a></li>
-      <li><a href="ipo.html" class="hover:underline hover:text-yellow-300 transition">IPO & Insurance</a></li>
-      <li><a href="career.html" class="text-yellow-300 underline">Career & Disclosure</a></li>
-      <li><a href="contact.html" class="hover:underline hover:text-yellow-300 transition">Contact Us</a></li>
-    </ul>
+  <nav class="bg-blue-800 text-white px-6 py-4 shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="text-2xl font-bold">FinAspirant</div>
+      <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+      <ul id="menu" class="hidden md:flex flex-wrap gap-6 text-sm font-semibold">
+        <li><a href="index.html" class="hover:text-yellow-300 transition duration-300">Home</a></li>
+        <li><a href="about.html" class="hover:text-yellow-300 transition duration-300">About Us</a></li>
+        <li><a href="learning.html" class="hover:text-yellow-300 transition duration-300">Learning Academy</a></li>
+        <li><a href="stratiq.html" class="hover:text-yellow-300 transition duration-300">StratIQ™</a></li>
+        <li><a href="backtest.html" class="hover:text-yellow-300 transition duration-300">BackTestLab™</a></li>
+        <li><a href="tools.html" class="hover:text-yellow-300 transition duration-300">Tools & Resources</a></li>
+        <li><a href="blog.html" class="hover:text-yellow-300 transition duration-300">Blog & Insights</a></li>
+        <li><a href="ipo.html" class="hover:text-yellow-300 transition duration-300">IPO & Insurance</a></li>
+        <li><a href="career.html" class="text-yellow-300 border-b-2 border-yellow-300">Career & Disclosure</a></li>
+        <li><a href="contact.html" class="hover:text-yellow-300 transition duration-1s">Contact Us</a></li>
+      </ul>
+    </div>
   </nav>
 
   <!-- Hero Section -->
-  <section class="bg-gray-50 py-16 text-center">
-    <div class="max-w-3xl mx-auto px-6">
-      <h1 class="text-4xl font-bold text-blue-800 mb-4">Career & Disclosure</h1>
-      <p class="text-lg text-gray-700">Join a mission-driven team transforming financial literacy and transparency in India.</p>
+  <section class="relative bg-cover h-[400px] parallax" style="background-image: url('https://images.unsplash.com/photo-1516321310765-79e5b2b7b738?q=80&w=1920');">
+    <div class="absolute inset-0 gradient-overlay flex items-center justify-center">
+      <div class="text-center text-white animate-fadeInUp">
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-4 tracking-tight">Join Our Mission</h1>
+        <p class="text-lg md:text-xl max-w-3xl mx-auto">Be part of a team revolutionizing financial literacy and transparency in India.</p>
+        <a href="#careers-section" class="mt-6 inline-block bg-yellow-300 text-blue-800 px-8 py-3 rounded-full font-semibold hover:bg-yellow-400 transition">Explore Careers</a>
+      </div>
     </div>
   </section>
 
   <!-- Careers Section -->
-  <section class="max-w-6xl mx-auto px-6 py-16">
-    <h2 class="text-2xl font-bold text-orange-700 mb-6">🚀 Career Opportunities</h2>
-    <p class="text-gray-700 mb-4">We’re always looking for passionate individuals to help us make investing simple, smart, and secure.</p>
+  <section id="careers-section" class="max-w-7xl mx-auto px-6 py-16">
+    <h2 class="text-3xl font-extrabold text-orange-700 mb-6 flex items-center gap-2">
+      🚀 <span>Career Opportunities</span>
+    </h2>
+    <p class="text-gray-700 mb-8 max-w-3xl">We’re seeking passionate individuals to help make investing simple, smart, and secure. Join us to shape the future of finance.</p>
     
-    <ul class="space-y-6">
-      <li>
-        <h3 class="font-bold text-lg text-blue-700">Frontend Developer (React + Tailwind)</h3>
-        <p class="text-sm text-gray-600">Build beautiful interfaces for investment tools. Remote-friendly. 1+ yrs experience preferred.</p>
-      </li>
-      <li>
-        <h3 class="font-bold text-lg text-blue-700">Content Strategist – Financial Education</h3>
-        <p class="text-sm text-gray-600">Craft high-impact blog posts, explainers, and tooltips for new investors.</p>
-      </li>
-      <li>
-        <h3 class="font-bold text-lg text-blue-700">Growth Analyst – Data & Insights</h3>
-        <p class="text-sm text-gray-600">Work with product & marketing teams to uncover user growth opportunities.</p>
-      </li>
-    </ul>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-white p-6 rounded-xl shadow-lg hover-scale animate-fadeInUp">
+        <div class="flex items-center gap-3 mb-3">
+          <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          <h3 class="text-xl font-bold text-blue-700">Frontend Developer (React + Tailwind)</h3>
+        </div>
+        <p class="text-sm text-gray-600 mb-4">Build beautiful interfaces for investment tools. Remote-friendly. 1+ yrs experience preferred.</p>
+        <a href="mailto:careers@finaspirant.in" class="text-blue-600 font-semibold hover:text-blue-800">Apply Now</a>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg hover-scale animate-fadeInUp" style="animation-delay: 0.1s;">
+        <div class="flex items-center gap-3 mb-3">
+          <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.5a5.5 5.5 0 0110 0v10a5.5 5.5 0 01-10 0v-10zm-9 0a5.5 5.5 0 0110 0v10a5.5 5.5 0 01-10 0v-10z"></path></svg>
+          <h3 class="text-xl font-bold text-blue-700">Content Strategist – Financial Education</h3>
+        </div>
+        <p class="text-sm text-gray-600 mb-4">Craft high-impact blog posts, explainers, and tooltips for new investors.</p>
+        <a href="mailto:careers@finaspirant.in" class="text-blue-600 font-semibold hover:text-blue-800">Apply Now</a>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg hover-scale animate-fadeInUp" style="animation-delay: 0.2s;">
+        <div class="flex items-center gap-3 mb-3">
+          <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+          <h3 class="text-xl font-bold text-blue-700">Growth Analyst – Data & Insights</h3>
+        </div>
+        <p class="text-sm text-gray-600 mb-4">Work with product & marketing teams to uncover user growth opportunities.</p>
+        <a href="mailto:careers@finaspirant.in" class="text-blue-600 font-semibold hover:text-blue-800">Apply Now</a>
+      </div>
+    </div>
 
     <div class="mt-10 text-center">
-      <a href="mailto:careers@finaspirant.in" class="bg-black text-white px-6 py-3 rounded font-bold hover:bg-gray-900 transition">Apply Now</a>
+      <a href="mailto:careers@finaspirant.in" class="inline-block bg-blue-800 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-900 transition pulse">Apply Now</a>
+    </div>
+  </section>
+
+  <!-- Testimonial Carousel -->
+  <section class="max-w-7xl mx-auto px-6 py-16 bg-blue-50">
+    <h3 class="text-3xl font-extrabold text-blue-800 mb-6 text-center">Why Work With Us</h3>
+    <div id="carousel" class="relative overflow-hidden">
+      <div class="flex transition-transform duration-500" id="carousel-items">
+        <div class="min-w-full p-6 bg-white rounded-xl shadow-lg text-center">
+          <p class="text-gray-600 italic mb-4">"Working at FinAspirant has been a game-changer for my career!"</p>
+          <p class="font-semibold text-blue-700">— Anika Gupta, Developer</p>
+        </div>
+        <div class="min-w-full p-6 bg-white rounded-xl shadow-lg text-center">
+          <p class="text-gray-600 italic mb-4">"A supportive team and a mission I believe in."</p>
+          <p class="font-semibold text-blue-700">— Vikram Singh, Content Lead</p>
+        </div>
+        <div class="min-w-full p-6 bg-white rounded-xl shadow-lg text-center">
+          <p class="text-gray-600 italic mb-4">"Innovative projects and endless learning opportunities."</p>
+          <p class="font-semibold text-blue-700">— Priya Menon, Analyst</p>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center gap-2 mt-4">
+      <button id="prev" class="p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700">←</button>
+      <button id="next" class="p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700">→</button>
     </div>
   </section>
 
   <!-- Disclosures Section -->
-  <section class="max-w-6xl mx-auto px-6 py-16 border-t border-gray-200">
-    <h2 class="text-2xl font-bold text-orange-700 mb-6">📄 Legal Disclosures</h2>
-    <ul class="list-disc list-inside text-gray-700 space-y-3 text-sm">
-      <li>FinAspirant is not a SEBI registered investment advisor or broker.</li>
-      <li>Content provided is for educational and informational purposes only.</li>
-      <li>Users must perform their own due diligence before making financial decisions.</li>
-      <li>Simulation tools are based on historical market data and do not guarantee future returns.</li>
-      <li>We do not offer personalized investment advice or solicitations.</li>
-    </ul>
-
-    <div class="mt-6">
-      <p class="text-xs text-gray-500">For more information, refer to our <a href="terms.html" class="underline text-blue-600">Terms of Service</a> and <a href="privacy.html" class="underline text-blue-600">Privacy Policy</a>.</p>
+  <section class="max-w-7xl mx-auto px-6 py-16 border-t border-gray-200">
+    <h2 class="text-3xl font-extrabold text-orange-700 mb-6 flex items-center gap-2">
+      📄 <span>Legal Disclosures</span>
+    </h2>
+    <div class="space-y-4">
+      <div class="bg-white p-6 rounded-xl shadow-lg hover-scale animate-fadeInUp">
+        <button class="w-full text-left font-semibold text-blue-700 flex justify-between items-center" onclick="toggleAccordion(this)">
+          FinAspirant is not a SEBI registered investment advisor or broker
+          <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="accordion-content max-h-0 opacity-0 overflow-hidden">
+          <p class="text-sm text-gray-600 mt-2">We operate as an educational platform and do not provide regulated financial advice or brokerage services.</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg hover-scale animate-fadeInUp" style="animation-delay: 0.1s;">
+        <button class="w-full text-left font-semibold text-blue-700 flex justify-between items-center" onclick="toggleAccordion(this)">
+          Content is for educational and informational purposes only
+          <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="accordion-content max-h-0 opacity-0 overflow-hidden">
+          <p class="text-sm text-gray-600 mt-2">All materials provided are intended to educate and inform, not to serve as personalized financial advice.</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg hover-scale animate-fadeInUp" style="animation-delay: 0.2s;">
+        <button class="w-full text-left font-semibold text-blue-700 flex justify-between items-center" onclick="toggleAccordion(this)">
+          Users must perform their own due diligence
+          <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="accordion-content max-h-0 opacity-0 overflow-hidden">
+          <p class="text-sm text-gray-600 mt-2">Investors are responsible for researching and verifying information before making financial decisions.</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg hover-scale animate-fadeInUp" style="animation-delay: 0.3s;">
+        <button class="w-full text-left font-semibold text-blue-700 flex justify-between items-center" onclick="toggleAccordion(this)">
+          Simulation tools are based on historical data
+          <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="accordion-content max-h-0 opacity-0 overflow-hidden">
+          <p class="text-sm text-gray-600 mt-2">Our tools use historical market data and do not guarantee future returns or performance.</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg hover-scale animate-fadeInUp" style="animation-delay: 0.4s;">
+        <button class="w-full text-left font-semibold text-blue-700 flex justify-between items-center" onclick="toggleAccordion(this)">
+          No personalized investment advice or solicitations
+          <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="accordion-content max-h-0 opacity-0 overflow-hidden">
+          <p class="text-sm text-gray-600 mt-2">We do not offer tailored investment recommendations or solicit investments.</p>
+        </div>
+      </div>
+    </div>
+    <div class="mt-6 text-center">
+      <p class="text-xs text-gray-500">For more information, refer to our <a href="terms.html" class="underline text-blue-600 hover:text-blue-800">Terms of Service</a> and <a href="privacy.html" class="underline text-blue-600 hover:text-blue-800">Privacy Policy</a>.</p>
     </div>
   </section>
 
+  <!-- Sticky CTA -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <a href="mailto:careers@finaspirant.in" class="inline-block bg-blue-800 text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-900 transition shadow-lg hover-scale pulse">Apply Now</a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-blue-800 text-white text-center py-8">
+    <div class="max-w-7xl mx-auto">
+      <p class="mb-4 text-sm">© 2025 FinAspirant. All rights reserved.</p>
+      <div class="flex justify-center gap-6 text-sm mb-4">
+        <a href="#" class="hover:text-yellow-300 transition">Privacy Policy</a>
+        <a href="#" class="hover:text-yellow-300 transition">Terms of Service</a>
+        <a href="#" class="hover:text-yellow-300 transition">FAQ</a>
+      </div>
+      <div class="flex justify-center gap-4">
+        <a href="#" class="hover:text-yellow-300"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg></a>
+        <a href="#" class="hover:text-yellow-300"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg></a>
+        <a href="#" class="hover:text-yellow-300"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path><circle cx="4" cy="4" r="2"></circle></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    menuToggle.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
+      menu.classList.toggle('flex-col');
+      menu.classList.toggle('absolute');
+      menu.classList.toggle('top-16');
+      menu.classList.toggle('left-0');
+      menu.classList.toggle('right-0');
+      menu.classList.toggle('bg-blue-800');
+      menu.classList.toggle('p-4');
+    });
+
+    // Carousel functionality
+    const carousel = document.getElementById('carousel-items');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    let currentIndex = 0;
+    const items = carousel.children.length;
+
+    next.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % items;
+      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    });
+
+    prev.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + items) % items;
+      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    });
+
+    // Auto-slide every 5 seconds
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % items;
+      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }, 5000);
+
+    // Accordion functionality
+    function toggleAccordion(button) {
+      const content = button.nextElementSibling;
+      const isOpen = content.style.maxHeight;
+      document.querySelectorAll('.accordion-content').forEach(item => {
+        item.style.maxHeight = null;
+        item.style.opacity = 0;
+        item.previousElementSibling.querySelector('svg').classList.remove('rotate-180');
+      });
+      if (!isOpen) {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        content.style.opacity = 1;
+        button.querySelector('svg').classList.add('rotate-180');
+      }
+    }
+  </script>
 </body>
 </html>

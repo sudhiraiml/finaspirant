@@ -2,85 +2,349 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Blog & Insides - FinAspirant</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Blog & Insights - FinAspirant</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Custom styles */
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-image: linear-gradient(45deg, #f3f4f6 25%, transparent 25%), 
+                        linear-gradient(-45deg, #f3f4f6 25%, transparent 25%),
+                        linear-gradient(45deg, transparent 75%, #f3f4f6 75%),
+                        linear-gradient(-45deg, transparent 75%, #f3f4f6 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 0, 10px -10px, 0px 10px;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .animate-fadeInUp {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+    .hover-scale {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hover-scale:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+    .pulse {
+      animation: pulse 2s infinite ease-in-out;
+    }
+    .gradient-overlay {
+      background: linear-gradient(to right, rgba(30, 64, 175, 0.95), rgba(59, 130, 246, 0.75));
+    }
+    .parallax {
+      background-attachment: fixed;
+      background-position: center;
+      background-size: cover;
+    }
+    .card-gradient {
+      background: linear-gradient(135deg, #ffffff, #f9fafb);
+    }
+    .accordion-content {
+      transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    }
+    #carousel {
+      transition: transform 0.5s ease;
+    }
+    .category-button.active {
+      background-color: #1e40af;
+      color: white;
+    }
+  </style>
 </head>
-<body class="bg-white text-black font-sans">
+<body class="bg-gray-100 text-gray-900">
 
   <!-- Navbar -->
-  <nav class="bg-blue-700 text-white px-6 py-4 shadow-md">
-    <ul class="flex flex-wrap gap-6 text-sm font-bold">
-      <li><a href="index.html" class="hover:underline hover:text-yellow-300 transition">Home</a></li>
-      <li><a href="about.html" class="hover:underline hover:text-yellow-300 transition">About Us</a></li>
-      <li><a href="learning.html" class="hover:underline hover:text-yellow-300 transition">Learning Academy</a></li>
-      <li><a href="stratiq.html" class="hover:underline hover:text-yellow-300 transition">StratIQ™</a></li>
-      <li><a href="backtest.html" class="hover:underline hover:text-yellow-300 transition">BackTestLab™</a></li>
-      <li><a href="tools.html" class="hover:underline hover:text-yellow-300 transition">Tools & Resources</a></li>
-      <li><a href="blog.html" class="text-yellow-300 underline">Blog & Insides</a></li>
-      <li><a href="ipo.html" class="hover:underline hover:text-yellow-300 transition">IPO & Insurance</a></li>
-      <li><a href="career.html" class="hover:underline hover:text-yellow-300 transition">Career & Disclosure</a></li>
-      <li><a href="contact.html" class="hover:underline hover:text-yellow-300 transition">Contact Us</a></li>
-    </ul>
+  <nav class="bg-blue-800 text-white px-6 py-4 shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="text-2xl font-bold">FinAspirant</div>
+      <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+      <ul id="menu" class="hidden md:flex flex-wrap gap-6 text-sm font-semibold">
+        <li><a href="index.html" class="hover:text-yellow-300 transition duration-300">Home</a></li>
+        <li><a href="about.html" class="hover:text-yellow-300 transition duration-300">About Us</a></li>
+        <li><a href="learning.html" class="hover:text-yellow-300 transition duration-300">Learning Academy</a></li>
+        <li><a href="stratiq.html" class="hover:text-yellow-300 transition duration-300">StratIQ™</a></li>
+        <li><a href="backtest.html" class="hover:text-yellow-300 transition duration-300">BackTestLab™</a></li>
+        <li><a href="tools.html" class="hover:text-yellow-300 transition duration-300">Tools & Resources</a></li>
+        <li><a href="blog.html" class="text-yellow-300 border-b-2 border-yellow-300">Blog & Insights</a></li>
+        <li><a href="ipo.html" class="hover:text-yellow-300 transition duration-300">IPO & Insurance</a></li>
+        <li><a href="career.html" class="hover:text-yellow-300 transition duration-300">Career & Disclosure</a></li>
+        <li><a href="contact.html" class="hover:text-yellow-300 transition duration-300">Contact Us</a></li>
+      </ul>
+    </div>
   </nav>
 
   <!-- Hero Section -->
-  <section class="bg-gray-50 py-16 text-center">
-    <div class="max-w-4xl mx-auto px-6">
-      <h1 class="text-4xl font-bold text-blue-800 mb-4">📰 Blog & Insights</h1>
-      <p class="text-lg text-gray-700">Your trusted source for financial wisdom, market updates, and investment stories.</p>
+  <section class="relative bg-cover h-[400px] parallax" style="background-image: url('https://images.unsplash.com/photo-1611224923851-80d4d9726b44?q=80&w=1920');">
+    <div class="absolute inset-0 gradient-overlay flex items-center justify-center">
+      <div class="text-center text-white animate-fadeInUp">
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-4 tracking-tight">Blog & Insights</h1>
+        <p class="text-lg md:text-xl max-w-3xl mx-auto">Your trusted source for financial wisdom, market updates, and investment stories.</p>
+        <a href="#blog" class="mt-6 inline-block bg-yellow-300 text-blue-800 px-8 py-3 rounded-full font-semibold hover:bg-yellow-400 transition">Read Latest Posts</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Filter -->
+  <section class="max-w-7xl mx-auto px-6 py-8">
+    <div class="flex flex-wrap gap-4 justify-center">
+      <button class="category-button px-4 py-2 bg-gray-200 text-gray-700 rounded-full font-semibold hover:bg-blue-600 hover:text-white transition active" data-category="all">All</button>
+      <button class="category-button px-4 py-2 bg-gray-200 text-gray-700 rounded-full font-semibold hover:bg-blue-600 hover:text-white transition" data-category="market">Market Trends</button>
+      <button class="category-button px-4 py-2 bg-gray-200 text-gray-700 rounded-full font-semibold hover:bg-blue-600 hover:text-white transition" data-category="tips">Investment Tips</button>
+      <button class="category-button px-4 py-2 bg-gray-200 text-gray-700 rounded-full font-semibold hover:bg-blue-600 hover:text-white transition" data-category="economy">Economy</button>
     </div>
   </section>
 
   <!-- Blog Grid -->
-  <section class="max-w-6xl mx-auto px-6 py-16">
-    <h2 class="text-2xl font-bold text-orange-700 mb-10">Featured Articles</h2>
+  <section id="blog" class="max-w-7xl mx-auto px-6 py-16">
+    <h2 class="text-3xl font-extrabold text-blue-800 mb-10 flex items-center gap-2">
+      📑 <span>Featured Articles</span>
+    </h2>
     <div class="grid md:grid-cols-3 gap-8">
-      
       <!-- Blog 1 -->
-      <div class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition">
-        <img src="https://source.unsplash.com/400x200/?stock,market" alt="Market Image" class="w-full h-48 object-cover">
-        <div class="p-5">
+      <div class="card-gradient shadow-lg rounded-xl overflow-hidden hover-scale animate-fadeInUp blog-post" data-category="market">
+        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236aa?q=80&w=400" alt="Market Image" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <span class="inline-block bg-blue-600 text-white text-xs font-semibold px-2 py-1 rounded mb-2">Market Trends</span>
           <h3 class="font-bold text-lg text-blue-700 mb-2">📈 India’s Bull Run: Is It Sustainable?</h3>
           <p class="text-gray-600 text-sm mb-4">The Nifty is at all-time highs. Let’s break down what's fueling the rally and what to watch ahead.</p>
           <a href="#" class="text-blue-600 font-semibold text-sm hover:underline">Read More →</a>
         </div>
       </div>
-
       <!-- Blog 2 -->
-      <div class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition">
-        <img src="https://source.unsplash.com/400x200/?finance,news" alt="Finance News" class="w-full h-48 object-cover">
-        <div class="p-5">
+      <div class="card-gradient shadow-lg rounded-xl overflow-hidden hover-scale animate-fadeInUp blog-post" data-category="tips">
+        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21a74c?q=80&w=400" alt="Finance News" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <span class="inline-block bg-orange-600 text-white text-xs font-semibold px-2 py-1 rounded mb-2">Investment Tips</span>
           <h3 class="font-bold text-lg text-blue-700 mb-2">💡 5 Investment Mistakes Beginners Make</h3>
           <p class="text-gray-600 text-sm mb-4">Learn about the common traps that investors fall into and how you can avoid them smartly.</p>
           <a href="#" class="text-blue-600 font-semibold text-sm hover:underline">Read More →</a>
         </div>
       </div>
-
       <!-- Blog 3 -->
-      <div class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition">
-        <img src="https://source.unsplash.com/400x200/?economy,chart" alt="Economic Chart" class="w-full h-48 object-cover">
-        <div class="p-5">
+      <div class="card-gradient shadow-lg rounded-xl overflow-hidden hover-scale animate-fadeInUp blog-post" data-category="economy">
+        <img src="https://images.unsplash.com/photo-1590283603385-4b7a30578b2b?q=80&w=400" alt="Economic Chart" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <span class="inline-block bg-green-600 text-white text-xs font-semibold px-2 py-1 rounded mb-2">Economy</span>
           <h3 class="font-bold text-lg text-blue-700 mb-2">📊 Understanding Inflation's Impact on SIPs</h3>
           <p class="text-gray-600 text-sm mb-4">We analyze how rising inflation can silently eat into your long-term investment returns.</p>
           <a href="#" class="text-blue-600 font-semibold text-sm hover:underline">Read More →</a>
         </div>
       </div>
+    </div>
+  </section>
 
+  <!-- Testimonial Carousel -->
+  <section class="max-w-7xl mx-auto px-6 py-16 bg-blue-50">
+    <h3 class="text-3xl font-extrabold text-blue-800 mb-6 text-center">What Our Readers Say</h3>
+    <div id="carousel" class="relative overflow-hidden">
+      <div class="flex transition-transform duration-500" id="carousel-items">
+        <div class="min-w-full p-6 bg-white rounded-xl shadow-lg text-center">
+          <p class="text-gray-600 italic mb-4">"The blog posts are insightful and easy to understand!"</p>
+          <p class="font-semibold text-blue-700">— Ananya Sharma, Investor</p>
+        </div>
+        <div class="min-w-full p-6 bg-white rounded-xl shadow-lg text-center">
+          <p class="text-gray-600 italic mb-4">"FinAspirant’s articles keep me updated on market trends."</p>
+          <p class="font-semibold text-blue-700">— Rohit Patel, Trader</p>
+        </div>
+        <div class="min-w-full p-6 bg-white rounded-xl shadow-lg text-center">
+          <p class="text-gray-600 italic mb-4">"The investment tips are practical and actionable."</p>
+          <p class="font-semibold text-blue-700">— Priya Menon, Analyst</p>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center gap-2 mt-4">
+      <button id="prev" class="p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700">←</button>
+      <button id="next" class="p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700">→</button>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="max-w-7xl mx-auto px-6 py-16">
+    <h2 class="text-3xl font-extrabold text-blue-800 mb-6 flex items-center gap-2">
+      ❓ <span>Frequently Asked Questions</span>
+    </h2>
+    <div class="space-y-4">
+      <div class="bg-white p-6 rounded-xl shadow-lg hover-scale animate-fadeInUp">
+        <button class="w-full text-left font-semibold text-blue-700 flex justify-between items-center" onclick="toggleAccordion(this)">
+          How often are new blogs posted?
+          <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="accordion-content max-h-0 opacity-0 overflow-hidden">
+          <p class="text-sm text-gray-600 mt-2">We post new articles weekly, covering market trends, tips, and more.</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg hover-scale animate-fadeInUp" style="animation-delay: 0.1s;">
+        <button class="w-full text-left font-semibold text-blue-700 flex justify-between items-center" onclick="toggleAccordion(this)">
+          Can I suggest topics for the blog?
+          <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="accordion-content max-h-0 opacity-0 overflow-hidden">
+          <p class="text-sm text-gray-600 mt-2">Yes, reach out via our contact page with your suggestions!</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg hover-scale animate-fadeInUp" style="animation-delay: 0.2s;">
+        <button class="w-full text-left font-semibold text-blue-700 flex justify-between items-center" onclick="toggleAccordion(this)">
+          Are the blog posts free to read?
+          <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="accordion-content max-h-0 opacity-0 overflow-hidden">
+          <p class="text-sm text-gray-600 mt-2">Absolutely, all our blog content is free and accessible to everyone.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Newsletter CTA -->
   <section class="bg-blue-100 py-16 text-center">
     <div class="max-w-xl mx-auto px-6">
-      <h2 class="text-xl font-bold mb-3 text-blue-800">📬 Stay Ahead of the Curve</h2>
+      <h2 class="text-xl font-extrabold text-blue-800 mb-3 flex items-center justify-center gap-2">
+        📬 <span>Stay Ahead of the Curve</span>
+      </h2>
       <p class="text-gray-600 mb-6">Subscribe to receive weekly market news, expert tips, and learning resources in your inbox.</p>
-      <form class="flex flex-col sm:flex-row gap-4 justify-center">
-        <input type="email" placeholder="Enter your email" class="px-4 py-2 rounded shadow border border-gray-300 w-full sm:w-64">
-        <button type="submit" class="bg-black text-white px-6 py-2 rounded font-bold hover:bg-gray-900 transition">Subscribe</button>
+      <form id="newsletter-form" class="flex flex-col sm:flex-row gap-4 justify-center">
+        <input type="email" id="email-input" placeholder="Enter your email" class="px-4 py-2 rounded shadow border border-gray-300 w-full sm:w-64 focus:ring-2 focus:ring-blue-600" required>
+        <button type="submit" class="bg-blue-800 text-white px-6 py-2 rounded font-semibold hover:bg-blue-900 transition">Subscribe</button>
       </form>
+      <p id="form-message" class="mt-4 text-sm text-gray-600 hidden"></p>
     </div>
   </section>
 
+  <!-- Sticky CTA -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <a href="contact.html" class="inline-block bg-orange-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-orange-700 transition shadow-lg hover-scale pulse">Get in Touch</a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-blue-800 text-white text-center py-8">
+    <div class="max-w-7xl mx-auto">
+      <p class="mb-4 text-sm">© 2025 FinAspirant. All rights reserved.</p>
+      <div class="flex justify-center gap-6 text-sm mb-4">
+        <a href="#" class="hover:text-yellow-300 transition">Privacy Policy</a>
+        <a href="#" class="hover:text-yellow-300 transition">Terms of Service</a>
+        <a href="#" class="hover:text-yellow-300 transition">FAQ</a>
+      </div>
+      <div class="flex justify-center gap-4">
+        <a href="#" class="hover:text-yellow-300"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg></a>
+        <a href="#" class="hover:text-yellow-300"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg></a>
+        <a href="#" class="hover:text-yellow-300"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path><circle cx="4" cy="4" r="2"></circle></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    menuToggle.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
+      menu.classList.toggle('flex-col');
+      menu.classList.toggle('absolute');
+      menu.classList.toggle('top-16');
+      menu.classList.toggle('left-0');
+      menu.classList.toggle('right-0');
+      menu.classList.toggle('bg-blue-800');
+      menu.classList.toggle('p-4');
+    });
+
+    // Carousel functionality
+    const carousel = document.getElementById('carousel-items');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    let currentIndex = 0;
+    const items = carousel.children.length;
+
+    next.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % items;
+      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    });
+
+    prev.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + items) % items;
+      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    });
+
+    // Auto-slide every 5 seconds
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % items;
+      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }, 5000);
+
+    // Accordion functionality
+    function toggleAccordion(button) {
+      const content = button.nextElementSibling;
+      const isOpen = content.style.maxHeight;
+      document.querySelectorAll('.accordion-content').forEach(item => {
+        item.style.maxHeight = null;
+        item.style.opacity = 0;
+        item.previousElementSibling.querySelector('svg').classList.remove('rotate-180');
+      });
+      if (!isOpen) {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        content.style.opacity = 1;
+        button.querySelector('svg').classList.add('rotate-180');
+      }
+    }
+
+    // Category filter functionality
+    const categoryButtons = document.querySelectorAll('.category-button');
+    const blogPosts = document.querySelectorAll('.blog-post');
+
+    categoryButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const category = button.dataset.category;
+
+        // Update active button
+        categoryButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Filter posts
+        blogPosts.forEach(post => {
+          if (category === 'all' || post.dataset.category === category) {
+            post.classList.remove('hidden');
+          } else {
+            post.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // Newsletter form validation
+    const newsletterForm = document.getElementById('newsletter-form');
+    const emailInput = document.getElementById('email-input');
+    const formMessage = document.getElementById('form-message');
+
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = emailInput.value.trim();
+      if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        formMessage.textContent = 'Thank you for subscribing!';
+        formMessage.classList.remove('text-red-600', 'hidden');
+        formMessage.classList.add('text-green-600');
+        emailInput.value = '';
+      } else {
+        formMessage.textContent = 'Please enter a valid email address.';
+        formMessage.classList.remove('hidden');
+        formMessage.classList.add('text-red-600');
+      }
+    });
+  </script>
 </body>
 </html>

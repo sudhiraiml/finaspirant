@@ -5,68 +5,288 @@
   <title>Tools & Resources - FinAspirant</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Custom styles */
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-image: linear-gradient(45deg, #f3f4f6 25%, transparent 25%), 
+                        linear-gradient(-45deg, #f3f4f6 25%, transparent 25%),
+                        linear-gradient(45deg, transparent 75%, #f3f4f6 75%),
+                        linear-gradient(-45deg, transparent 75%, #f3f4f6 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 0, 10px -10px, 0px 10px;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .animate-fadeInUp {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+    .hover-scale {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hover-scale:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+    .pulse {
+      animation: pulse 2s infinite ease-in-out;
+    }
+    .gradient-overlay {
+      background: linear-gradient(to right, rgba(30, 64, 175, 0.95), rgba(59, 130, 246, 0.75));
+    }
+    .parallax {
+      background-attachment: fixed;
+      background-position: center;
+      background-size: cover;
+    }
+    .card-gradient {
+      background: linear-gradient(135deg, #ffffff, #f9fafb);
+    }
+    #carousel {
+      transition: transform 0.5s ease;
+    }
+  </style>
 </head>
-<body class="bg-white text-black font-sans">
+<body class="bg-gray-100 text-gray-900">
 
   <!-- Navbar -->
-  <nav class="bg-blue-700 text-white px-6 py-4 shadow-md">
-    <ul class="flex flex-wrap gap-6 text-sm font-bold">
-      <li><a href="index.html" class="hover:underline hover:text-yellow-300">Home</a></li>
-      <li><a href="about.html" class="hover:underline hover:text-yellow-300">About Us</a></li>
-      <li><a href="learning.html" class="hover:underline hover:text-yellow-300">Learning Academy</a></li>
-      <li><a href="stratiq.html" class="hover:underline hover:text-yellow-300">StratIQ™</a></li>
-      <li><a href="backtest.html" class="hover:underline hover:text-yellow-300">BackTestLab™</a></li>
-      <li><a href="tools.html" class="underline text-yellow-300">Tools & Resources</a></li>
-      <li><a href="blog.html" class="hover:underline hover:text-yellow-300">Blog & Insides</a></li>
-      <li><a href="ipo.html" class="hover:underline hover:text-yellow-300">IPO & Insurance</a></li>
-      <li><a href="career.html" class="hover:underline hover:text-yellow-300">Career & Disclosure</a></li>
-      <li><a href="contact.html" class="hover:underline hover:text-yellow-300">Contact Us</a></li>
-    </ul>
+  <nav class="bg-blue-800 text-white px-6 py-4 shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="text-2xl font-bold">FinAspirant</div>
+      <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+      <ul id="menu" class="hidden md:flex flex-wrap gap-6 text-sm font-semibold">
+        <li><a href="index.html" class="hover:text-yellow-300 transition duration-300">Home</a></li>
+        <li><a href="about.html" class="hover:text-yellow-300 transition duration-300">About Us</a></li>
+        <li><a href="learning.html" class="hover:text-yellow-300 transition duration-300">Learning Academy</a></li>
+        <li><a href="stratiq.html" class="hover:text-yellow-300 transition duration-300">StratIQ™</a></li>
+        <li><a href="backtest.html" class="hover:text-yellow-300 transition duration-300">BackTestLab™</a></li>
+        <li><a href="tools.html" class="text-yellow-300 border-b-2 border-yellow-300">Tools & Resources</a></li>
+        <li><a href="blog.html" class="hover:text-yellow-300 transition duration-300">Blog & Insights</a></li>
+        <li><a href="ipo.html" class="hover:text-yellow-300 transition duration-300">IPO & Insurance</a></li>
+        <li><a href="career.html" class="hover:text-yellow-300 transition duration-300">Career & Disclosure</a></li>
+        <li><a href="contact.html" class="hover:text-yellow-300 transition duration-300">Contact Us</a></li>
+      </ul>
+    </div>
   </nav>
 
   <!-- Hero Section -->
-  <section class="max-w-7xl mx-auto px-6 py-12 text-center">
-    <h1 class="text-4xl font-extrabold text-blue-800 mb-4">Tools & Resources</h1>
-    <p class="text-gray-700 text-lg mb-8">Plan better. Analyze smarter. Our free tools simplify your financial journey.</p>
+  <section class="relative bg-cover h-[400px] parallax" style="background-image: url('https://images.unsplash.com/photo-1611224923851-80d4d9726b44?q=80&w=1920');">
+    <div class="absolute inset-0 gradient-overlay flex items-center justify-center">
+      <div class="text-center text-white animate-fadeInUp">
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-4 tracking-tight">Tools & Resources</h1>
+        <p class="text-lg md:text-xl max-w-3xl mx-auto">Plan smarter and invest with confidence using our free, powerful financial tools.</p>
+        <a href="#tools-section" class="mt-6 inline-block bg-yellow-300 text-blue-800 px-8 py-3 rounded-full font-semibold hover:bg-yellow-400 transition">Explore Tools</a>
+      </div>
+    </div>
   </section>
 
   <!-- Tools Cards -->
-  <section class="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-    <!-- SIP Calculator -->
-    <div class="bg-white border shadow-md p-6 rounded-xl hover:shadow-xl transition">
-      <div class="text-3xl mb-3">📈</div>
-      <h3 class="text-lg font-semibold text-blue-700 mb-2">SIP Calculator</h3>
-      <p class="text-sm text-gray-600">Estimate returns and goals using systematic investment plans.</p>
-    </div>
-    <!-- SWP Calculator -->
-    <div class="bg-white border shadow-md p-6 rounded-xl hover:shadow-xl transition">
-      <div class="text-3xl mb-3">💸</div>
-      <h3 class="text-lg font-semibold text-blue-700 mb-2">SWP Calculator</h3>
-      <p class="text-sm text-gray-600">Plan your withdrawals with clarity and sustainability in mind.</p>
-    </div>
-    <!-- EMI Calculator -->
-    <div class="bg-white border shadow-md p-6 rounded-xl hover:shadow-xl transition">
-      <div class="text-3xl mb-3">🏦</div>
-      <h3 class="text-lg font-semibold text-blue-700 mb-2">EMI Calculator</h3>
-      <p class="text-sm text-gray-600">Know your monthly outflow with accurate EMI projections.</p>
-    </div>
-    <!-- Market Watch -->
-    <div class="bg-white border shadow-md p-6 rounded-xl hover:shadow-xl transition">
-      <div class="text-3xl mb-3">📊</div>
-      <h3 class="text-lg font-semibold text-blue-700 mb-2">Market Watch</h3>
-      <p class="text-sm text-gray-600">Live updates and indices to track your portfolio intelligently.</p>
+  <section id="tools-section" class="max-w-7xl mx-auto px-6 py-16">
+    <h2 class="text-3xl font-extrabold text-blue-800 mb-6 flex items-center gap-2">
+      🛠️ <span>Our Tools</span>
+    </h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="card-gradient p-6 rounded-xl shadow-lg hover-scale animate-fadeInUp">
+        <div class="flex items-center gap-3 mb-3">
+          <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+          <h3 class="text-lg font-semibold text-blue-700">SIP Calculator</h3>
+        </div>
+        <p class="text-sm text-gray-600 mb-4">Estimate returns and goals using systematic investment plans.</p>
+        <a href="#sip-demo" class="text-blue-600 font-semibold hover:text-blue-800">Try Now</a>
+      </div>
+      <div class="card-gradient p-6 rounded-xl shadow-lg hover-scale animate-fadeInUp" style="animation-delay: 0.1s;">
+        <div class="flex items-center gap-3 mb-3">
+          <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <h3 class="text-lg font-semibold text-blue-700">SWP Calculator</h3>
+        </div>
+        <p class="text-sm text-gray-600 mb-4">Plan your withdrawals with clarity and sustainability in mind.</p>
+        <a href="#" class="text-blue-600 font-semibold hover:text-blue-800">Try Now</a>
+      </div>
+      <div class="card-gradient p-6 rounded-xl shadow-lg hover-scale animate-fadeInUp" style="animation-delay: 0.2s;">
+        <div class="flex items-center gap-3 mb-3">
+          <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3M7 4h10M7 4a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V6a2 2 0 00-2-2H7z"></path></svg>
+          <h3 class="text-lg font-semibold text-blue-700">EMI Calculator</h3>
+        </div>
+        <p class="text-sm text-gray-600 mb-4">Know your monthly outflow with accurate EMI projections.</p>
+        <a href="#" class="text-blue-600 font-semibold hover:text-blue-800">Try Now</a>
+      </div>
+      <div class="card-gradient p-6 rounded-xl shadow-lg hover-scale animate-fadeInUp" style="animation-delay: 0.3s;">
+        <div class="flex items-center gap-3 mb-3">
+          <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+          <h3 class="text-lg font-semibold text-blue-700">Market Watch</h3>
+        </div>
+        <p class="text-sm text-gray-600 mb-4">Live updates and indices to track your portfolio intelligently.</p>
+        <a href="#" class="text-blue-600 font-semibold hover:text-blue-800">Try Now</a>
+      </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="text-center py-10">
-    <a href="stratiq.html" class="inline-block bg-black text-white px-6 py-3 rounded-full font-semibold hover:bg-gray-800 transition">Explore Smart Intelligence</a>
+  <!-- SIP Calculator Demo -->
+  <section id="sip-demo" class="max-w-7xl mx-auto px-6 py-16 bg-blue-50 rounded-xl shadow-lg">
+    <h2 class="text-3xl font-extrabold text-blue-800 mb-6 flex items-center gap-2">
+      📈 <span>SIP Calculator Demo</span>
+    </h2>
+    <div class="bg-white p-6 rounded-xl shadow-md">
+      <form id="sip-form" class="space-y-4">
+        <div>
+          <label class="block mb-1 font-semibold" for="monthly-investment">Monthly Investment (₹)</label>
+          <input type="number" id="monthly-investment" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-600" placeholder="5000" min="100" required>
+        </div>
+        <div>
+          <label class="block mb-1 font-semibold" for="investment-period">Investment Period (Years)</label>
+          <input type="number" id="investment-period" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-600" placeholder="10" min="1" required>
+        </div>
+        <div>
+          <label class="block mb-1 font-semibold" for="expected-return">Expected Annual Return (%)</label>
+          <input type="number" id="expected-return" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-600" placeholder="12" min="1" max="30" required>
+        </div>
+        <button type="submit" class="bg-blue-800 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-900 transition">Calculate</button>
+      </form>
+      <div id="sip-result" class="mt-4 text-gray-700 hidden">
+        <p class="text-lg font-semibold">Your SIP Results:</p>
+        <p>Invested Amount: ₹<span id="invested-amount"></span></p>
+        <p>Estimated Returns: ₹<span id="estimated-returns"></span></p>
+        <p>Total Value: ₹<span id="total-value"></span></p>
+      </div>
+    </div>
   </section>
+
+  <!-- Testimonial Carousel -->
+  <section class="max-w-7xl mx-auto px-6 py-16">
+    <h3 class="text-3xl font-extrabold text-blue-800 mb-6 text-center">What Users Say About Our Tools</h3>
+    <div id="carousel" class="relative overflow-hidden">
+      <div class="flex transition-transform duration-500" id="carousel-items">
+        <div class="min-w-full p-6 bg-white rounded-xl shadow-lg text-center">
+          <p class="text-gray-600 italic mb-4">"The SIP Calculator helped me plan my investments with ease!"</p>
+          <p class="font-semibold text-blue-700">— Rohan Sharma, Investor</p>
+        </div>
+        <div class="min-w-full p-6 bg-white rounded-xl shadow-lg text-center">
+          <p class="text-gray-600 italic mb-4">"Market Watch keeps me updated on my portfolio in real-time."</p>
+          <p class="font-semibold text-blue-700">— Priya Nair, Trader</p>
+        </div>
+        <div class="min-w-full p-6 bg-white rounded-xl shadow-lg text-center">
+          <p class="text-gray-600 italic mb-4">"The EMI Calculator made my loan planning so simple."</p>
+          <p class="font-semibold text-blue-700">— Arjun Patel, Homebuyer</p>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center gap-2 mt-4">
+      <button id="prev" class="p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700">←</button>
+      <button id="next" class="p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700">→</button>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="max-w-7xl mx-auto px-6 py-16 bg-blue-50 rounded-xl shadow-lg">
+    <h3 class="text-3xl font-extrabold text-blue-800 mb-4 text-center">Stay Informed</h3>
+    <p class="text-gray-600 mb-6 text-center">Subscribe to our newsletter for updates on new tools and financial tips.</p>
+    <div class="flex justify-center">
+      <input type="email" placeholder="Enter your email" class="p-3 rounded-l-lg w-64 focus:outline-none focus:ring-2 focus:ring-blue-600">
+      <button class="bg-blue-800 text-white px-6 py-3 rounded-r-lg font-semibold hover:bg-blue-900 transition">Subscribe</button>
+    </div>
+  </section>
+
+  <!-- Sticky CTA -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <a href="stratiq.html" class="inline-block bg-blue-800 text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-900 transition shadow-lg hover-scale pulse">Explore Smart Intelligence</a>
+  </div>
 
   <!-- Footer -->
-  <footer class="bg-blue-700 text-white text-center py-4 text-sm">
-    © 2025 FinAspirant. All rights reserved.
+  <footer class="bg-blue-800 text-white text-center py-8">
+    <div class="max-w-7xl mx-auto">
+      <p class="mb-4 text-sm">© 2025 FinAspirant. All rights reserved.</p>
+      <div class="flex justify-center gap-6 text-sm mb-4">
+        <a href="#" class="hover:text-yellow-300 transition">Privacy Policy</a>
+        <a href="#" class="hover:text-yellow-300 transition">Terms of Service</a>
+        <a href="#" class="hover:text-yellow-300 transition">FAQ</a>
+      </div>
+      <div class="flex justify-center gap-4">
+        <a href="#" class="hover:text-yellow-300"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg></a>
+        <a href="#" class="hover:text-yellow-300"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg></a>
+        <a href="#" class=".hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
+  transform: scale(1.1);
+}hover:text-yellow-300"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path><circle cx="4" cy="4" r="2"></circle></svg></a>
+      </div>
+    </div>
   </footer>
 
+  <script>
+    // Hamburger menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    menuToggle.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
+      menu.classList.toggle('flex-col');
+      menu.classList.toggle('absolute');
+      menu.classList.toggle('top-16');
+      menu.classList.toggle('left-0');
+      menu.classList.toggle('right-0');
+      menu.classList.toggle('bg-blue-800');
+      menu.classList.toggle('p-4');
+    });
+
+    // Carousel functionality
+    const carousel = document.getElementById('carousel-items');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    let currentIndex = 0;
+    const items = carousel.children.length;
+
+    next.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % items;
+      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    });
+
+    prev.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + items) % items;
+      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    });
+
+    // Auto-slide every 5 seconds
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % items;
+      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }, 5000);
+
+    // SIP Calculator logic
+    const sipForm = document.getElementById('sip-form');
+    const resultDiv = document.getElementById('sip-result');
+    const investedAmountSpan = document.getElementById('invested-amount');
+    const estimatedReturnsSpan = document.getElementById('estimated-returns');
+    const totalValueSpan = document.getElementById('total-value');
+
+    sipForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const monthlyInvestment = parseFloat(document.getElementById('monthly-investment').value);
+      const investmentPeriod = parseInt(document.getElementById('investment-period').value);
+      const annualReturn = parseFloat(document.getElementById('expected-return').value) / 100;
+
+      const months = investmentPeriod * 12;
+      const monthlyRate = annualReturn / 12;
+      const totalValue = monthlyInvestment * (((1 + monthlyRate) ** months - 1) / monthlyRate) * (1 + monthlyRate);
+      const investedAmount = monthlyInvestment * months;
+      const estimatedReturns = totalValue - investedAmount;
+
+      investedAmountSpan.textContent = investedAmount.toFixed(2);
+      estimatedReturnsSpan.textContent = estimatedReturns.toFixed(2);
+      totalValueSpan.textContent = totalValue.toFixed(2);
+      resultDiv.classList.remove('hidden');
+    });
+  </script>
 </body>
 </html>
